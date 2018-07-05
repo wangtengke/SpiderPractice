@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--导入属性配置 -->
+    <properties resource="generator.properties"/>
+
+    <classPathEntry
+            location="C:\Users\USER\.m2\repository\mysql\mysql-connector-java\5.1.29\mysql-connector-java-5.1.29.jar" />
+    <context id="context1">
+        <!-- 注释 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" /><!-- 是否取消注释 -->
+            <property name="suppressDate" value="true" /> <!-- 是否生成注释代时间戳 -->
+        </commentGenerator>
+
+        <jdbcConnection driverClass="${driver}"
+                        connectionURL="${url}"
+                        userId="${username}"
+                        password="${password}" />
+
+        <!-- 类型转换 -->
+        <javaTypeResolver>
+            <!-- 是否使用bigDecimal， false可自动转化以下类型（Long, Integer, Short, etc.） -->
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="${modelPackage}"
+                            targetProject="${modelProject}" />
+        <sqlMapGenerator targetPackage="${sqlPackage}" targetProject="${sqlProject}" />
+        <javaClientGenerator targetPackage="${mapperPackage}"
+                             targetProject="${mapperProject}" type="XMLMAPPER" />
+        <!-- 如果需要通配所有表 直接用sql的通配符    %即可 -->
+        <table schema="" tableName="${table}" enableCountByExample="false"
+               enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false"/>
+        <!--<table tableName="zhihuteacher" domainObjectName="zhihuTeacher"/>-->
+        <!--<table tableName="User" domainObjectName="User"/>-->
+        <!--<table tableName="university" domainObjectName="University"/>-->
+        <!--<table tableName="address" domainObjectName="Address"/>-->
+        <!--<table tableName="bilibiliuser_follow" domainObjectName="bilibiliuser_follow"/>-->
+        <!--<table tableName="bilibiliuser_play" domainObjectName="bilibiliuser_play"/>-->
+        <!--<table tableName="musictoplist" domainObjectName="musictoplist"/>-->
+        <!--<table tableName="lpl_champion" domainObjectName="lpl_champion"/>-->
+        <!--<table tableName="lpl_member" domainObjectName="lpl_member"/>-->
+        <!--<table tableName="lpl_team" domainObjectName="lpl_team"/>-->
+        <!--<table tableName="wanplus_member" domainObjectName="wanplus_member"/>-->
+        <!--<table tableName="wanplus_team" domainObjectName="wanplus_team"/>-->
+        <!--<table tableName="wanplus_members7" domainObjectName="wanplus_memebers7"/>-->
+        <!--<table tableName="wanplus_member_summer2017" domainObjectName="wanplus_member_summer2017"/>-->
+        <!--<table tableName="famulei_heross7" domainObjectName="famulei_heross7"/>-->
+        <table tableName="clearlove_weibocomment" domainObjectName="clearlove_weibocomment"/>
+    </context>
+
+</generatorConfiguration>

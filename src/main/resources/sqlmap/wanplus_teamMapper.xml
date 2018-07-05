@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pachong.dao.wanplus_teamMapper" >
+  <resultMap id="BaseResultMap" type="com.pachong.entity.wanplus_team" >
+    <result column="TeamName" property="teamname" jdbcType="VARCHAR" />
+    <result column="Victory_Rate" property="victoryRate" jdbcType="REAL" />
+    <result column="KDA" property="kda" jdbcType="REAL" />
+    <result column="Average_Time" property="averageTime" jdbcType="VARCHAR" />
+    <result column="FirstBloodKill" property="firstbloodkill" jdbcType="REAL" />
+    <result column="Minute_Output" property="minuteOutput" jdbcType="REAL" />
+    <result column="Minute_Hits" property="minuteHits" jdbcType="REAL" />
+    <result column="Minute_Money" property="minuteMoney" jdbcType="REAL" />
+    <result column="SmallDragon_Rate" property="smalldragonRate" jdbcType="REAL" />
+    <result column="Minute_WardsPlaced" property="minuteWardsplaced" jdbcType="REAL" />
+    <result column="Minute_WardsKilled" property="minuteWardskilled" jdbcType="REAL" />
+    <result column="Average_Tower_Success" property="averageTowerSuccess" jdbcType="REAL" />
+    <result column="Average_Tower_Fail" property="averageTowerFail" jdbcType="REAL" />
+    <result column="BigDragon_Rate" property="bigdragonRate" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TeamName, Victory_Rate, KDA, Average_Time, FirstBloodKill, Minute_Output, Minute_Hits, 
+    Minute_Money, SmallDragon_Rate, Minute_WardsPlaced, Minute_WardsKilled, Average_Tower_Success, 
+    Average_Tower_Fail, BigDragon_Rate
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pachong.entity.wanplus_teamExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wanplus_team
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.pachong.entity.wanplus_teamExample" >
+    delete from wanplus_team
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pachong.entity.wanplus_team" >
+    insert into wanplus_team (TeamName, Victory_Rate, KDA, 
+      Average_Time, FirstBloodKill, Minute_Output, 
+      Minute_Hits, Minute_Money, SmallDragon_Rate, 
+      Minute_WardsPlaced, Minute_WardsKilled, Average_Tower_Success, 
+      Average_Tower_Fail, BigDragon_Rate)
+    values (#{teamname,jdbcType=VARCHAR}, #{victoryRate,jdbcType=REAL}, #{kda,jdbcType=REAL}, 
+      #{averageTime,jdbcType=VARCHAR}, #{firstbloodkill,jdbcType=REAL}, #{minuteOutput,jdbcType=REAL}, 
+      #{minuteHits,jdbcType=REAL}, #{minuteMoney,jdbcType=REAL}, #{smalldragonRate,jdbcType=REAL}, 
+      #{minuteWardsplaced,jdbcType=REAL}, #{minuteWardskilled,jdbcType=REAL}, #{averageTowerSuccess,jdbcType=REAL}, 
+      #{averageTowerFail,jdbcType=REAL}, #{bigdragonRate,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pachong.entity.wanplus_team" >
+    insert into wanplus_team
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teamname != null" >
+        TeamName,
+      </if>
+      <if test="victoryRate != null" >
+        Victory_Rate,
+      </if>
+      <if test="kda != null" >
+        KDA,
+      </if>
+      <if test="averageTime != null" >
+        Average_Time,
+      </if>
+      <if test="firstbloodkill != null" >
+        FirstBloodKill,
+      </if>
+      <if test="minuteOutput != null" >
+        Minute_Output,
+      </if>
+      <if test="minuteHits != null" >
+        Minute_Hits,
+      </if>
+      <if test="minuteMoney != null" >
+        Minute_Money,
+      </if>
+      <if test="smalldragonRate != null" >
+        SmallDragon_Rate,
+      </if>
+      <if test="minuteWardsplaced != null" >
+        Minute_WardsPlaced,
+      </if>
+      <if test="minuteWardskilled != null" >
+        Minute_WardsKilled,
+      </if>
+      <if test="averageTowerSuccess != null" >
+        Average_Tower_Success,
+      </if>
+      <if test="averageTowerFail != null" >
+        Average_Tower_Fail,
+      </if>
+      <if test="bigdragonRate != null" >
+        BigDragon_Rate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teamname != null" >
+        #{teamname,jdbcType=VARCHAR},
+      </if>
+      <if test="victoryRate != null" >
+        #{victoryRate,jdbcType=REAL},
+      </if>
+      <if test="kda != null" >
+        #{kda,jdbcType=REAL},
+      </if>
+      <if test="averageTime != null" >
+        #{averageTime,jdbcType=VARCHAR},
+      </if>
+      <if test="firstbloodkill != null" >
+        #{firstbloodkill,jdbcType=REAL},
+      </if>
+      <if test="minuteOutput != null" >
+        #{minuteOutput,jdbcType=REAL},
+      </if>
+      <if test="minuteHits != null" >
+        #{minuteHits,jdbcType=REAL},
+      </if>
+      <if test="minuteMoney != null" >
+        #{minuteMoney,jdbcType=REAL},
+      </if>
+      <if test="smalldragonRate != null" >
+        #{smalldragonRate,jdbcType=REAL},
+      </if>
+      <if test="minuteWardsplaced != null" >
+        #{minuteWardsplaced,jdbcType=REAL},
+      </if>
+      <if test="minuteWardskilled != null" >
+        #{minuteWardskilled,jdbcType=REAL},
+      </if>
+      <if test="averageTowerSuccess != null" >
+        #{averageTowerSuccess,jdbcType=REAL},
+      </if>
+      <if test="averageTowerFail != null" >
+        #{averageTowerFail,jdbcType=REAL},
+      </if>
+      <if test="bigdragonRate != null" >
+        #{bigdragonRate,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pachong.entity.wanplus_teamExample" resultType="java.lang.Integer" >
+    select count(*) from wanplus_team
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update wanplus_team
+    <set >
+      <if test="record.teamname != null" >
+        TeamName = #{record.teamname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.victoryRate != null" >
+        Victory_Rate = #{record.victoryRate,jdbcType=REAL},
+      </if>
+      <if test="record.kda != null" >
+        KDA = #{record.kda,jdbcType=REAL},
+      </if>
+      <if test="record.averageTime != null" >
+        Average_Time = #{record.averageTime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.firstbloodkill != null" >
+        FirstBloodKill = #{record.firstbloodkill,jdbcType=REAL},
+      </if>
+      <if test="record.minuteOutput != null" >
+        Minute_Output = #{record.minuteOutput,jdbcType=REAL},
+      </if>
+      <if test="record.minuteHits != null" >
+        Minute_Hits = #{record.minuteHits,jdbcType=REAL},
+      </if>
+      <if test="record.minuteMoney != null" >
+        Minute_Money = #{record.minuteMoney,jdbcType=REAL},
+      </if>
+      <if test="record.smalldragonRate != null" >
+        SmallDragon_Rate = #{record.smalldragonRate,jdbcType=REAL},
+      </if>
+      <if test="record.minuteWardsplaced != null" >
+        Minute_WardsPlaced = #{record.minuteWardsplaced,jdbcType=REAL},
+      </if>
+      <if test="record.minuteWardskilled != null" >
+        Minute_WardsKilled = #{record.minuteWardskilled,jdbcType=REAL},
+      </if>
+      <if test="record.averageTowerSuccess != null" >
+        Average_Tower_Success = #{record.averageTowerSuccess,jdbcType=REAL},
+      </if>
+      <if test="record.averageTowerFail != null" >
+        Average_Tower_Fail = #{record.averageTowerFail,jdbcType=REAL},
+      </if>
+      <if test="record.bigdragonRate != null" >
+        BigDragon_Rate = #{record.bigdragonRate,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update wanplus_team
+    set TeamName = #{record.teamname,jdbcType=VARCHAR},
+      Victory_Rate = #{record.victoryRate,jdbcType=REAL},
+      KDA = #{record.kda,jdbcType=REAL},
+      Average_Time = #{record.averageTime,jdbcType=VARCHAR},
+      FirstBloodKill = #{record.firstbloodkill,jdbcType=REAL},
+      Minute_Output = #{record.minuteOutput,jdbcType=REAL},
+      Minute_Hits = #{record.minuteHits,jdbcType=REAL},
+      Minute_Money = #{record.minuteMoney,jdbcType=REAL},
+      SmallDragon_Rate = #{record.smalldragonRate,jdbcType=REAL},
+      Minute_WardsPlaced = #{record.minuteWardsplaced,jdbcType=REAL},
+      Minute_WardsKilled = #{record.minuteWardskilled,jdbcType=REAL},
+      Average_Tower_Success = #{record.averageTowerSuccess,jdbcType=REAL},
+      Average_Tower_Fail = #{record.averageTowerFail,jdbcType=REAL},
+      BigDragon_Rate = #{record.bigdragonRate,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

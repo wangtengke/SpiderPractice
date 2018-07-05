@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pachong.dao.lpl_teamMapper" >
+  <resultMap id="BaseResultMap" type="com.pachong.entity.lpl_team" >
+    <id column="TeamId" property="teamid" jdbcType="INTEGER" />
+    <result column="TeamName" property="teamname" jdbcType="VARCHAR" />
+    <result column="AppearancesFrequency" property="appearancesfrequency" jdbcType="INTEGER" />
+    <result column="Win" property="win" jdbcType="INTEGER" />
+    <result column="Loss" property="loss" jdbcType="INTEGER" />
+    <result column="AveragingWin" property="averagingwin" jdbcType="REAL" />
+    <result column="aKill" property="akill" jdbcType="INTEGER" />
+    <result column="AveragingKill" property="averagingkill" jdbcType="REAL" />
+    <result column="Death" property="death" jdbcType="INTEGER" />
+    <result column="AveragingDeath" property="averagingdeath" jdbcType="REAL" />
+    <result column="AveragingWardPlaced" property="averagingwardplaced" jdbcType="INTEGER" />
+    <result column="AveragingWardKilled" property="averagingwardkilled" jdbcType="INTEGER" />
+    <result column="AveragingGold" property="averaginggold" jdbcType="REAL" />
+    <result column="AveragingSmallDragon" property="averagingsmalldragon" jdbcType="REAL" />
+    <result column="AveragingBigDragon" property="averagingbigdragon" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TeamId, TeamName, AppearancesFrequency, Win, Loss, AveragingWin, aKill, AveragingKill, 
+    Death, AveragingDeath, AveragingWardPlaced, AveragingWardKilled, AveragingGold, AveragingSmallDragon, 
+    AveragingBigDragon
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pachong.entity.lpl_teamExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from lpl_team
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from lpl_team
+    where TeamId = #{teamid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from lpl_team
+    where TeamId = #{teamid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.pachong.entity.lpl_teamExample" >
+    delete from lpl_team
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pachong.entity.lpl_team" >
+    insert into lpl_team (TeamId, TeamName, AppearancesFrequency, 
+      Win, Loss, AveragingWin, 
+      aKill, AveragingKill, Death, 
+      AveragingDeath, AveragingWardPlaced, AveragingWardKilled, 
+      AveragingGold, AveragingSmallDragon, AveragingBigDragon
+      )
+    values (#{teamid,jdbcType=INTEGER}, #{teamname,jdbcType=VARCHAR}, #{appearancesfrequency,jdbcType=INTEGER}, 
+      #{win,jdbcType=INTEGER}, #{loss,jdbcType=INTEGER}, #{averagingwin,jdbcType=REAL}, 
+      #{akill,jdbcType=INTEGER}, #{averagingkill,jdbcType=REAL}, #{death,jdbcType=INTEGER}, 
+      #{averagingdeath,jdbcType=REAL}, #{averagingwardplaced,jdbcType=INTEGER}, #{averagingwardkilled,jdbcType=INTEGER}, 
+      #{averaginggold,jdbcType=REAL}, #{averagingsmalldragon,jdbcType=REAL}, #{averagingbigdragon,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pachong.entity.lpl_team" >
+    insert into lpl_team
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="teamid != null" >
+        TeamId,
+      </if>
+      <if test="teamname != null" >
+        TeamName,
+      </if>
+      <if test="appearancesfrequency != null" >
+        AppearancesFrequency,
+      </if>
+      <if test="win != null" >
+        Win,
+      </if>
+      <if test="loss != null" >
+        Loss,
+      </if>
+      <if test="averagingwin != null" >
+        AveragingWin,
+      </if>
+      <if test="akill != null" >
+        aKill,
+      </if>
+      <if test="averagingkill != null" >
+        AveragingKill,
+      </if>
+      <if test="death != null" >
+        Death,
+      </if>
+      <if test="averagingdeath != null" >
+        AveragingDeath,
+      </if>
+      <if test="averagingwardplaced != null" >
+        AveragingWardPlaced,
+      </if>
+      <if test="averagingwardkilled != null" >
+        AveragingWardKilled,
+      </if>
+      <if test="averaginggold != null" >
+        AveragingGold,
+      </if>
+      <if test="averagingsmalldragon != null" >
+        AveragingSmallDragon,
+      </if>
+      <if test="averagingbigdragon != null" >
+        AveragingBigDragon,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="teamid != null" >
+        #{teamid,jdbcType=INTEGER},
+      </if>
+      <if test="teamname != null" >
+        #{teamname,jdbcType=VARCHAR},
+      </if>
+      <if test="appearancesfrequency != null" >
+        #{appearancesfrequency,jdbcType=INTEGER},
+      </if>
+      <if test="win != null" >
+        #{win,jdbcType=INTEGER},
+      </if>
+      <if test="loss != null" >
+        #{loss,jdbcType=INTEGER},
+      </if>
+      <if test="averagingwin != null" >
+        #{averagingwin,jdbcType=REAL},
+      </if>
+      <if test="akill != null" >
+        #{akill,jdbcType=INTEGER},
+      </if>
+      <if test="averagingkill != null" >
+        #{averagingkill,jdbcType=REAL},
+      </if>
+      <if test="death != null" >
+        #{death,jdbcType=INTEGER},
+      </if>
+      <if test="averagingdeath != null" >
+        #{averagingdeath,jdbcType=REAL},
+      </if>
+      <if test="averagingwardplaced != null" >
+        #{averagingwardplaced,jdbcType=INTEGER},
+      </if>
+      <if test="averagingwardkilled != null" >
+        #{averagingwardkilled,jdbcType=INTEGER},
+      </if>
+      <if test="averaginggold != null" >
+        #{averaginggold,jdbcType=REAL},
+      </if>
+      <if test="averagingsmalldragon != null" >
+        #{averagingsmalldragon,jdbcType=REAL},
+      </if>
+      <if test="averagingbigdragon != null" >
+        #{averagingbigdragon,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pachong.entity.lpl_teamExample" resultType="java.lang.Integer" >
+    select count(*) from lpl_team
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update lpl_team
+    <set >
+      <if test="record.teamid != null" >
+        TeamId = #{record.teamid,jdbcType=INTEGER},
+      </if>
+      <if test="record.teamname != null" >
+        TeamName = #{record.teamname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appearancesfrequency != null" >
+        AppearancesFrequency = #{record.appearancesfrequency,jdbcType=INTEGER},
+      </if>
+      <if test="record.win != null" >
+        Win = #{record.win,jdbcType=INTEGER},
+      </if>
+      <if test="record.loss != null" >
+        Loss = #{record.loss,jdbcType=INTEGER},
+      </if>
+      <if test="record.averagingwin != null" >
+        AveragingWin = #{record.averagingwin,jdbcType=REAL},
+      </if>
+      <if test="record.akill != null" >
+        aKill = #{record.akill,jdbcType=INTEGER},
+      </if>
+      <if test="record.averagingkill != null" >
+        AveragingKill = #{record.averagingkill,jdbcType=REAL},
+      </if>
+      <if test="record.death != null" >
+        Death = #{record.death,jdbcType=INTEGER},
+      </if>
+      <if test="record.averagingdeath != null" >
+        AveragingDeath = #{record.averagingdeath,jdbcType=REAL},
+      </if>
+      <if test="record.averagingwardplaced != null" >
+        AveragingWardPlaced = #{record.averagingwardplaced,jdbcType=INTEGER},
+      </if>
+      <if test="record.averagingwardkilled != null" >
+        AveragingWardKilled = #{record.averagingwardkilled,jdbcType=INTEGER},
+      </if>
+      <if test="record.averaginggold != null" >
+        AveragingGold = #{record.averaginggold,jdbcType=REAL},
+      </if>
+      <if test="record.averagingsmalldragon != null" >
+        AveragingSmallDragon = #{record.averagingsmalldragon,jdbcType=REAL},
+      </if>
+      <if test="record.averagingbigdragon != null" >
+        AveragingBigDragon = #{record.averagingbigdragon,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update lpl_team
+    set TeamId = #{record.teamid,jdbcType=INTEGER},
+      TeamName = #{record.teamname,jdbcType=VARCHAR},
+      AppearancesFrequency = #{record.appearancesfrequency,jdbcType=INTEGER},
+      Win = #{record.win,jdbcType=INTEGER},
+      Loss = #{record.loss,jdbcType=INTEGER},
+      AveragingWin = #{record.averagingwin,jdbcType=REAL},
+      aKill = #{record.akill,jdbcType=INTEGER},
+      AveragingKill = #{record.averagingkill,jdbcType=REAL},
+      Death = #{record.death,jdbcType=INTEGER},
+      AveragingDeath = #{record.averagingdeath,jdbcType=REAL},
+      AveragingWardPlaced = #{record.averagingwardplaced,jdbcType=INTEGER},
+      AveragingWardKilled = #{record.averagingwardkilled,jdbcType=INTEGER},
+      AveragingGold = #{record.averaginggold,jdbcType=REAL},
+      AveragingSmallDragon = #{record.averagingsmalldragon,jdbcType=REAL},
+      AveragingBigDragon = #{record.averagingbigdragon,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pachong.entity.lpl_team" >
+    update lpl_team
+    <set >
+      <if test="teamname != null" >
+        TeamName = #{teamname,jdbcType=VARCHAR},
+      </if>
+      <if test="appearancesfrequency != null" >
+        AppearancesFrequency = #{appearancesfrequency,jdbcType=INTEGER},
+      </if>
+      <if test="win != null" >
+        Win = #{win,jdbcType=INTEGER},
+      </if>
+      <if test="loss != null" >
+        Loss = #{loss,jdbcType=INTEGER},
+      </if>
+      <if test="averagingwin != null" >
+        AveragingWin = #{averagingwin,jdbcType=REAL},
+      </if>
+      <if test="akill != null" >
+        aKill = #{akill,jdbcType=INTEGER},
+      </if>
+      <if test="averagingkill != null" >
+        AveragingKill = #{averagingkill,jdbcType=REAL},
+      </if>
+      <if test="death != null" >
+        Death = #{death,jdbcType=INTEGER},
+      </if>
+      <if test="averagingdeath != null" >
+        AveragingDeath = #{averagingdeath,jdbcType=REAL},
+      </if>
+      <if test="averagingwardplaced != null" >
+        AveragingWardPlaced = #{averagingwardplaced,jdbcType=INTEGER},
+      </if>
+      <if test="averagingwardkilled != null" >
+        AveragingWardKilled = #{averagingwardkilled,jdbcType=INTEGER},
+      </if>
+      <if test="averaginggold != null" >
+        AveragingGold = #{averaginggold,jdbcType=REAL},
+      </if>
+      <if test="averagingsmalldragon != null" >
+        AveragingSmallDragon = #{averagingsmalldragon,jdbcType=REAL},
+      </if>
+      <if test="averagingbigdragon != null" >
+        AveragingBigDragon = #{averagingbigdragon,jdbcType=REAL},
+      </if>
+    </set>
+    where TeamId = #{teamid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pachong.entity.lpl_team" >
+    update lpl_team
+    set TeamName = #{teamname,jdbcType=VARCHAR},
+      AppearancesFrequency = #{appearancesfrequency,jdbcType=INTEGER},
+      Win = #{win,jdbcType=INTEGER},
+      Loss = #{loss,jdbcType=INTEGER},
+      AveragingWin = #{averagingwin,jdbcType=REAL},
+      aKill = #{akill,jdbcType=INTEGER},
+      AveragingKill = #{averagingkill,jdbcType=REAL},
+      Death = #{death,jdbcType=INTEGER},
+      AveragingDeath = #{averagingdeath,jdbcType=REAL},
+      AveragingWardPlaced = #{averagingwardplaced,jdbcType=INTEGER},
+      AveragingWardKilled = #{averagingwardkilled,jdbcType=INTEGER},
+      AveragingGold = #{averaginggold,jdbcType=REAL},
+      AveragingSmallDragon = #{averagingsmalldragon,jdbcType=REAL},
+      AveragingBigDragon = #{averagingbigdragon,jdbcType=REAL}
+    where TeamId = #{teamid,jdbcType=INTEGER}
+  </update>
+</mapper>

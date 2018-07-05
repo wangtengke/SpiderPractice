@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pachong.dao.wanplus_memberMapper" >
+  <resultMap id="BaseResultMap" type="com.pachong.entity.wanplus_member" >
+    <result column="Player_Name" property="playerName" jdbcType="VARCHAR" />
+    <result column="Team_Name" property="teamName" jdbcType="VARCHAR" />
+    <result column="Position" property="position" jdbcType="VARCHAR" />
+    <result column="Mvp" property="mvp" jdbcType="INTEGER" />
+    <result column="Minute_Economic" property="minuteEconomic" jdbcType="REAL" />
+    <result column="Minute_Hits" property="minuteHits" jdbcType="REAL" />
+    <result column="Minute_DamageDealt" property="minuteDamagedealt" jdbcType="REAL" />
+    <result column="DamageDealt_Rate" property="damagedealtRate" jdbcType="REAL" />
+    <result column="Minute_DamageTaken" property="minuteDamagetaken" jdbcType="REAL" />
+    <result column="DamageTaken_Rate" property="damagetakenRate" jdbcType="REAL" />
+    <result column="Minute_WardsPlaced" property="minuteWardsplaced" jdbcType="REAL" />
+    <result column="Minute_WardKilled" property="minuteWardkilled" jdbcType="REAL" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    Player_Name, Team_Name, Position, Mvp, Minute_Economic, Minute_Hits, Minute_DamageDealt, 
+    DamageDealt_Rate, Minute_DamageTaken, DamageTaken_Rate, Minute_WardsPlaced, Minute_WardKilled
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pachong.entity.wanplus_memberExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wanplus_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.pachong.entity.wanplus_memberExample" >
+    delete from wanplus_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pachong.entity.wanplus_member" >
+    insert into wanplus_member (Player_Name, Team_Name, Position, 
+      Mvp, Minute_Economic, Minute_Hits, 
+      Minute_DamageDealt, DamageDealt_Rate, Minute_DamageTaken, 
+      DamageTaken_Rate, Minute_WardsPlaced, Minute_WardKilled
+      )
+    values (#{playerName,jdbcType=VARCHAR}, #{teamName,jdbcType=VARCHAR}, #{position,jdbcType=VARCHAR}, 
+      #{mvp,jdbcType=INTEGER}, #{minuteEconomic,jdbcType=REAL}, #{minuteHits,jdbcType=REAL}, 
+      #{minuteDamagedealt,jdbcType=REAL}, #{damagedealtRate,jdbcType=REAL}, #{minuteDamagetaken,jdbcType=REAL}, 
+      #{damagetakenRate,jdbcType=REAL}, #{minuteWardsplaced,jdbcType=REAL}, #{minuteWardkilled,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.pachong.entity.wanplus_member" >
+    insert into wanplus_member
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="playerName != null" >
+        Player_Name,
+      </if>
+      <if test="teamName != null" >
+        Team_Name,
+      </if>
+      <if test="position != null" >
+        Position,
+      </if>
+      <if test="mvp != null" >
+        Mvp,
+      </if>
+      <if test="minuteEconomic != null" >
+        Minute_Economic,
+      </if>
+      <if test="minuteHits != null" >
+        Minute_Hits,
+      </if>
+      <if test="minuteDamagedealt != null" >
+        Minute_DamageDealt,
+      </if>
+      <if test="damagedealtRate != null" >
+        DamageDealt_Rate,
+      </if>
+      <if test="minuteDamagetaken != null" >
+        Minute_DamageTaken,
+      </if>
+      <if test="damagetakenRate != null" >
+        DamageTaken_Rate,
+      </if>
+      <if test="minuteWardsplaced != null" >
+        Minute_WardsPlaced,
+      </if>
+      <if test="minuteWardkilled != null" >
+        Minute_WardKilled,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="playerName != null" >
+        #{playerName,jdbcType=VARCHAR},
+      </if>
+      <if test="teamName != null" >
+        #{teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="position != null" >
+        #{position,jdbcType=VARCHAR},
+      </if>
+      <if test="mvp != null" >
+        #{mvp,jdbcType=INTEGER},
+      </if>
+      <if test="minuteEconomic != null" >
+        #{minuteEconomic,jdbcType=REAL},
+      </if>
+      <if test="minuteHits != null" >
+        #{minuteHits,jdbcType=REAL},
+      </if>
+      <if test="minuteDamagedealt != null" >
+        #{minuteDamagedealt,jdbcType=REAL},
+      </if>
+      <if test="damagedealtRate != null" >
+        #{damagedealtRate,jdbcType=REAL},
+      </if>
+      <if test="minuteDamagetaken != null" >
+        #{minuteDamagetaken,jdbcType=REAL},
+      </if>
+      <if test="damagetakenRate != null" >
+        #{damagetakenRate,jdbcType=REAL},
+      </if>
+      <if test="minuteWardsplaced != null" >
+        #{minuteWardsplaced,jdbcType=REAL},
+      </if>
+      <if test="minuteWardkilled != null" >
+        #{minuteWardkilled,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pachong.entity.wanplus_memberExample" resultType="java.lang.Integer" >
+    select count(*) from wanplus_member
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update wanplus_member
+    <set >
+      <if test="record.playerName != null" >
+        Player_Name = #{record.playerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.teamName != null" >
+        Team_Name = #{record.teamName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.position != null" >
+        Position = #{record.position,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mvp != null" >
+        Mvp = #{record.mvp,jdbcType=INTEGER},
+      </if>
+      <if test="record.minuteEconomic != null" >
+        Minute_Economic = #{record.minuteEconomic,jdbcType=REAL},
+      </if>
+      <if test="record.minuteHits != null" >
+        Minute_Hits = #{record.minuteHits,jdbcType=REAL},
+      </if>
+      <if test="record.minuteDamagedealt != null" >
+        Minute_DamageDealt = #{record.minuteDamagedealt,jdbcType=REAL},
+      </if>
+      <if test="record.damagedealtRate != null" >
+        DamageDealt_Rate = #{record.damagedealtRate,jdbcType=REAL},
+      </if>
+      <if test="record.minuteDamagetaken != null" >
+        Minute_DamageTaken = #{record.minuteDamagetaken,jdbcType=REAL},
+      </if>
+      <if test="record.damagetakenRate != null" >
+        DamageTaken_Rate = #{record.damagetakenRate,jdbcType=REAL},
+      </if>
+      <if test="record.minuteWardsplaced != null" >
+        Minute_WardsPlaced = #{record.minuteWardsplaced,jdbcType=REAL},
+      </if>
+      <if test="record.minuteWardkilled != null" >
+        Minute_WardKilled = #{record.minuteWardkilled,jdbcType=REAL},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update wanplus_member
+    set Player_Name = #{record.playerName,jdbcType=VARCHAR},
+      Team_Name = #{record.teamName,jdbcType=VARCHAR},
+      Position = #{record.position,jdbcType=VARCHAR},
+      Mvp = #{record.mvp,jdbcType=INTEGER},
+      Minute_Economic = #{record.minuteEconomic,jdbcType=REAL},
+      Minute_Hits = #{record.minuteHits,jdbcType=REAL},
+      Minute_DamageDealt = #{record.minuteDamagedealt,jdbcType=REAL},
+      DamageDealt_Rate = #{record.damagedealtRate,jdbcType=REAL},
+      Minute_DamageTaken = #{record.minuteDamagetaken,jdbcType=REAL},
+      DamageTaken_Rate = #{record.damagetakenRate,jdbcType=REAL},
+      Minute_WardsPlaced = #{record.minuteWardsplaced,jdbcType=REAL},
+      Minute_WardKilled = #{record.minuteWardkilled,jdbcType=REAL}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

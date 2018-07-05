@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pachong.dao.famulei_herosMapper" >
+  <resultMap id="BaseResultMap" type="com.pachong.entity.famulei_heros" >
+    <result column="blue_name" property="blueName" jdbcType="VARCHAR" />
+    <result column="red_name" property="redName" jdbcType="VARCHAR" />
+    <result column="blue_result" property="blueResult" jdbcType="VARCHAR" />
+    <result column="red_result" property="redResult" jdbcType="VARCHAR" />
+    <result column="blue_hero_a_name" property="blueHeroAName" jdbcType="VARCHAR" />
+    <result column="blue_hero_b_name" property="blueHeroBName" jdbcType="VARCHAR" />
+    <result column="blue_hero_c_name" property="blueHeroCName" jdbcType="VARCHAR" />
+    <result column="blue_hero_d_name" property="blueHeroDName" jdbcType="VARCHAR" />
+    <result column="blue_hero_e_name" property="blueHeroEName" jdbcType="VARCHAR" />
+    <result column="red_hero_a_name" property="redHeroAName" jdbcType="VARCHAR" />
+    <result column="red_hero_b_name" property="redHeroBName" jdbcType="VARCHAR" />
+    <result column="red_hero_c_name" property="redHeroCName" jdbcType="VARCHAR" />
+    <result column="red_hero_d_name" property="redHeroDName" jdbcType="VARCHAR" />
+    <result column="red_hero_e_name" property="redHeroEName" jdbcType="VARCHAR" />
+    <result column="blue_star_a_name" property="blueStarAName" jdbcType="VARCHAR" />
+    <result column="blue_star_b_name" property="blueStarBName" jdbcType="VARCHAR" />
+    <result column="blue_star_c_name" property="blueStarCName" jdbcType="VARCHAR" />
+    <result column="blue_star_d_name" property="blueStarDName" jdbcType="VARCHAR" />
+    <result column="blue_star_e_name" property="blueStarEName" jdbcType="VARCHAR" />
+    <result column="red_star_a_name" property="redStarAName" jdbcType="VARCHAR" />
+    <result column="red_star_b_name" property="redStarBName" jdbcType="VARCHAR" />
+    <result column="red_star_c_name" property="redStarCName" jdbcType="VARCHAR" />
+    <result column="red_star_d_name" property="redStarDName" jdbcType="VARCHAR" />
+    <result column="red_star_e_name" property="redStarEName" jdbcType="VARCHAR" />
+    <result column="blue_star_a_atk_p" property="blueStarAAtkP" jdbcType="REAL" />
+    <result column="blue_star_b_atk_p" property="blueStarBAtkP" jdbcType="REAL" />
+    <result column="blue_star_c_atk_p" property="blueStarCAtkP" jdbcType="REAL" />
+    <result column="blue_star_d_atk_p" property="blueStarDAtkP" jdbcType="REAL" />
+    <result column="blue_star_e_atk_p" property="blueStarEAtkP" jdbcType="REAL" />
+    <result column="red_star_a_atk_p" property="redStarAAtkP" jdbcType="REAL" />
+    <result column="red_star_b_atk_p" property="redStarBAtkP" jdbcType="REAL" />
+    <result column="red_star_c_atk_p" property="redStarCAtkP" jdbcType="REAL" />
+    <result column="red_star_d_atk_p" property="redStarDAtkP" jdbcType="REAL" />
+    <result column="red_star_e_atk_p" property="redStarEAtkP" jdbcType="REAL" />
+    <result column="blue_star_a_def_p" property="blueStarADefP" jdbcType="REAL" />
+    <result column="blue_star_b_def_p" property="blueStarBDefP" jdbcType="REAL" />
+    <result column="blue_star_c_def_p" property="blueStarCDefP" jdbcType="REAL" />
+    <result column="blue_star_d_def_p" property="blueStarDDefP" jdbcType="REAL" />
+    <result column="blue_star_e_def_p" property="blueStarEDefP" jdbcType="REAL" />
+    <result column="red_star_a_def_p" property="redStarADefP" jdbcType="REAL" />
+    <result column="red_star_b_def_p" property="redStarBDefP" jdbcType="REAL" />
+    <result column="red_star_c_def_p" property="redStarCDefP" jdbcType="REAL" />
+    <result column="red_star_d_def_p" property="redStarDDefP" jdbcType="REAL" />
+    <result column="red_star_e_def_p" property="redStarEDefP" jdbcType="REAL" />
+    <result column="game_time_m" property="gameTimeM" jdbcType="INTEGER" />
+    <result column="game_time_s" property="gameTimeS" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    blue_name, red_name, blue_result, red_result, blue_hero_a_name, blue_hero_b_name, 
+    blue_hero_c_name, blue_hero_d_name, blue_hero_e_name, red_hero_a_name, red_hero_b_name, 
+    red_hero_c_name, red_hero_d_name, red_hero_e_name, blue_star_a_name, blue_star_b_name, 
+    blue_star_c_name, blue_star_d_name, blue_star_e_name, red_star_a_name, red_star_b_name, 
+    red_star_c_name, red_star_d_name, red_star_e_name, blue_star_a_atk_p, blue_star_b_atk_p, 
+    blue_star_c_atk_p, blue_star_d_atk_p, blue_star_e_atk_p, red_star_a_atk_p, red_star_b_atk_p, 
+    red_star_c_atk_p, red_star_d_atk_p, red_star_e_atk_p, blue_star_a_def_p, blue_star_b_def_p, 
+    blue_star_c_def_p, blue_star_d_def_p, blue_star_e_def_p, red_star_a_def_p, red_star_b_def_p, 
+    red_star_c_def_p, red_star_d_def_p, red_star_e_def_p, game_time_m, game_time_s
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.pachong.entity.famulei_herosExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from famulei_heros
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.pachong.entity.famulei_herosExample" >
+    delete from famulei_heros
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.pachong.entity.famulei_heros" >
+    insert into famulei_heros (blue_name, red_name, blue_result, 
+      red_result, blue_hero_a_name, blue_hero_b_name, 
+      blue_hero_c_name, blue_hero_d_name, blue_hero_e_name, 
+      red_hero_a_name, red_hero_b_name, red_hero_c_name, 
+      red_hero_d_name, red_hero_e_name, blue_star_a_name, 
+      blue_star_b_name, blue_star_c_name, blue_star_d_name, 
+      blue_star_e_name, red_star_a_name, red_star_b_name, 
+      red_star_c_name, red_star_d_name, red_star_e_name, 
+      blue_star_a_atk_p, blue_star_b_atk_p, blue_star_c_atk_p, 
+      blue_star_d_atk_p, blue_star_e_atk_p, red_star_a_atk_p, 
+      red_star_b_atk_p, red_star_c_atk_p, red_star_d_atk_p, 
+      red_star_e_atk_p, blue_star_a_def_p, blue_star_b_def_p, 
+      blue_star_c_def_p, blue_star_d_def_p, blue_star_e_def_p, 
+      red_star_a_def_p, red_star_b_def_p, red_star_c_def_p, 
+      red_star_d_def_p, red_star_e_def_p, game_time_m, 
+      game_time_s)
+    values (#{blueName,jdbcType=VARCHAR}, #{redName,jdbcType=VARCHAR}, #{blueResult,jdbcType=VARCHAR}, 
+      #{redResult,jdbcType=VARCHAR}, #{blueHeroAName,jdbcType=VARCHAR}, #{blueHeroBName,jdbcType=VARCHAR}, 
+      #{blueHeroCName,jdbcType=VARCHAR}, #{blueHeroDName,jdbcType=VARCHAR}, #{blueHeroEName,jdbcType=VARCHAR}, 
+      #{redHeroAName,jdbcType=VARCHAR}, #{redHeroBName,jdbcType=VARCHAR}, #{redHeroCName,jdbcType=VARCHAR}, 
+      #{redHeroDName,jdbcType=VARCHAR}, #{redHeroEName,jdbcType=VARCHAR}, #{blueStarAName,jdbcType=VARCHAR}, 
+      #{blueStarBName,jdbcType=VARCHAR}, #{blueStarCName,jdbcType=VARCHAR}, #{blueStarDName,jdbcType=VARCHAR}, 
+      #{blueStarEName,jdbcType=VARCHAR}, #{redStarAName,jdbcType=VARCHAR}, #{redStarBName,jdbcType=VARCHAR}, 
+      #{redStarCName,jdbcType=VARCHAR}, #{redStarDName,jdbcType=VARCHAR}, #{redStarEName,jdbcType=VARCHAR}, 
+      #{blueStarAAtkP,jdbcType=REAL}, #{blueStarBAtkP,jdbcType=REAL}, #{blueStarCAtkP,jdbcType=REAL}, 
+      #{blueStarDAtkP,jdbcType=REAL}, #{blueStarEAtkP,jdbcType=REAL}, #{redStarAAtkP,jdbcType=REAL}, 
+      #{redStarBAtkP,jdbcType=REAL}, #{redStarCAtkP,jdbcType=REAL}, #{redStarDAtkP,jdbcType=REAL}, 
+      #{redStarEAtkP,jdbcType=REAL}, #{blueStarADefP,jdbcType=REAL}, #{blueStarBDefP,jdbcType=REAL}, 
+      #{blueStarCDefP,jdbcType=REAL}, #{blueStarDDefP,jdbcType=REAL}, #{blueStarEDefP,jdbcType=REAL}, 
+      #{redStarADefP,jdbcType=REAL}, #{redStarBDefP,jdbcType=REAL}, #{redStarCDefP,jdbcType=REAL}, 
+      #{redStarDDefP,jdbcType=REAL}, #{redStarEDefP,jdbcType=REAL}, #{gameTimeM,jdbcType=INTEGER}, 
+      #{gameTimeS,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pachong.entity.famulei_heros" >
+    insert into famulei_heros
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="blueName != null" >
+        blue_name,
+      </if>
+      <if test="redName != null" >
+        red_name,
+      </if>
+      <if test="blueResult != null" >
+        blue_result,
+      </if>
+      <if test="redResult != null" >
+        red_result,
+      </if>
+      <if test="blueHeroAName != null" >
+        blue_hero_a_name,
+      </if>
+      <if test="blueHeroBName != null" >
+        blue_hero_b_name,
+      </if>
+      <if test="blueHeroCName != null" >
+        blue_hero_c_name,
+      </if>
+      <if test="blueHeroDName != null" >
+        blue_hero_d_name,
+      </if>
+      <if test="blueHeroEName != null" >
+        blue_hero_e_name,
+      </if>
+      <if test="redHeroAName != null" >
+        red_hero_a_name,
+      </if>
+      <if test="redHeroBName != null" >
+        red_hero_b_name,
+      </if>
+      <if test="redHeroCName != null" >
+        red_hero_c_name,
+      </if>
+      <if test="redHeroDName != null" >
+        red_hero_d_name,
+      </if>
+      <if test="redHeroEName != null" >
+        red_hero_e_name,
+      </if>
+      <if test="blueStarAName != null" >
+        blue_star_a_name,
+      </if>
+      <if test="blueStarBName != null" >
+        blue_star_b_name,
+      </if>
+      <if test="blueStarCName != null" >
+        blue_star_c_name,
+      </if>
+      <if test="blueStarDName != null" >
+        blue_star_d_name,
+      </if>
+      <if test="blueStarEName != null" >
+        blue_star_e_name,
+      </if>
+      <if test="redStarAName != null" >
+        red_star_a_name,
+      </if>
+      <if test="redStarBName != null" >
+        red_star_b_name,
+      </if>
+      <if test="redStarCName != null" >
+        red_star_c_name,
+      </if>
+      <if test="redStarDName != null" >
+        red_star_d_name,
+      </if>
+      <if test="redStarEName != null" >
+        red_star_e_name,
+      </if>
+      <if test="blueStarAAtkP != null" >
+        blue_star_a_atk_p,
+      </if>
+      <if test="blueStarBAtkP != null" >
+        blue_star_b_atk_p,
+      </if>
+      <if test="blueStarCAtkP != null" >
+        blue_star_c_atk_p,
+      </if>
+      <if test="blueStarDAtkP != null" >
+        blue_star_d_atk_p,
+      </if>
+      <if test="blueStarEAtkP != null" >
+        blue_star_e_atk_p,
+      </if>
+      <if test="redStarAAtkP != null" >
+        red_star_a_atk_p,
+      </if>
+      <if test="redStarBAtkP != null" >
+        red_star_b_atk_p,
+      </if>
+      <if test="redStarCAtkP != null" >
+        red_star_c_atk_p,
+      </if>
+      <if test="redStarDAtkP != null" >
+        red_star_d_atk_p,
+      </if>
+      <if test="redStarEAtkP != null" >
+        red_star_e_atk_p,
+      </if>
+      <if test="blueStarADefP != null" >
+        blue_star_a_def_p,
+      </if>
+      <if test="blueStarBDefP != null" >
+        blue_star_b_def_p,
+      </if>
+      <if test="blueStarCDefP != null" >
+        blue_star_c_def_p,
+      </if>
+      <if test="blueStarDDefP != null" >
+        blue_star_d_def_p,
+      </if>
+      <if test="blueStarEDefP != null" >
+        blue_star_e_def_p,
+      </if>
+      <if test="redStarADefP != null" >
+        red_star_a_def_p,
+      </if>
+      <if test="redStarBDefP != null" >
+        red_star_b_def_p,
+      </if>
+      <if test="redStarCDefP != null" >
+        red_star_c_def_p,
+      </if>
+      <if test="redStarDDefP != null" >
+        red_star_d_def_p,
+      </if>
+      <if test="redStarEDefP != null" >
+        red_star_e_def_p,
+      </if>
+      <if test="gameTimeM != null" >
+        game_time_m,
+      </if>
+      <if test="gameTimeS != null" >
+        game_time_s,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="blueName != null" >
+        #{blueName,jdbcType=VARCHAR},
+      </if>
+      <if test="redName != null" >
+        #{redName,jdbcType=VARCHAR},
+      </if>
+      <if test="blueResult != null" >
+        #{blueResult,jdbcType=VARCHAR},
+      </if>
+      <if test="redResult != null" >
+        #{redResult,jdbcType=VARCHAR},
+      </if>
+      <if test="blueHeroAName != null" >
+        #{blueHeroAName,jdbcType=VARCHAR},
+      </if>
+      <if test="blueHeroBName != null" >
+        #{blueHeroBName,jdbcType=VARCHAR},
+      </if>
+      <if test="blueHeroCName != null" >
+        #{blueHeroCName,jdbcType=VARCHAR},
+      </if>
+      <if test="blueHeroDName != null" >
+        #{blueHeroDName,jdbcType=VARCHAR},
+      </if>
+      <if test="blueHeroEName != null" >
+        #{blueHeroEName,jdbcType=VARCHAR},
+      </if>
+      <if test="redHeroAName != null" >
+        #{redHeroAName,jdbcType=VARCHAR},
+      </if>
+      <if test="redHeroBName != null" >
+        #{redHeroBName,jdbcType=VARCHAR},
+      </if>
+      <if test="redHeroCName != null" >
+        #{redHeroCName,jdbcType=VARCHAR},
+      </if>
+      <if test="redHeroDName != null" >
+        #{redHeroDName,jdbcType=VARCHAR},
+      </if>
+      <if test="redHeroEName != null" >
+        #{redHeroEName,jdbcType=VARCHAR},
+      </if>
+      <if test="blueStarAName != null" >
+        #{blueStarAName,jdbcType=VARCHAR},
+      </if>
+      <if test="blueStarBName != null" >
+        #{blueStarBName,jdbcType=VARCHAR},
+      </if>
+      <if test="blueStarCName != null" >
+        #{blueStarCName,jdbcType=VARCHAR},
+      </if>
+      <if test="blueStarDName != null" >
+        #{blueStarDName,jdbcType=VARCHAR},
+      </if>
+      <if test="blueStarEName != null" >
+        #{blueStarEName,jdbcType=VARCHAR},
+      </if>
+      <if test="redStarAName != null" >
+        #{redStarAName,jdbcType=VARCHAR},
+      </if>
+      <if test="redStarBName != null" >
+        #{redStarBName,jdbcType=VARCHAR},
+      </if>
+      <if test="redStarCName != null" >
+        #{redStarCName,jdbcType=VARCHAR},
+      </if>
+      <if test="redStarDName != null" >
+        #{redStarDName,jdbcType=VARCHAR},
+      </if>
+      <if test="redStarEName != null" >
+        #{redStarEName,jdbcType=VARCHAR},
+      </if>
+      <if test="blueStarAAtkP != null" >
+        #{blueStarAAtkP,jdbcType=REAL},
+      </if>
+      <if test="blueStarBAtkP != null" >
+        #{blueStarBAtkP,jdbcType=REAL},
+      </if>
+      <if test="blueStarCAtkP != null" >
+        #{blueStarCAtkP,jdbcType=REAL},
+      </if>
+      <if test="blueStarDAtkP != null" >
+        #{blueStarDAtkP,jdbcType=REAL},
+      </if>
+      <if test="blueStarEAtkP != null" >
+        #{blueStarEAtkP,jdbcType=REAL},
+      </if>
+      <if test="redStarAAtkP != null" >
+        #{redStarAAtkP,jdbcType=REAL},
+      </if>
+      <if test="redStarBAtkP != null" >
+        #{redStarBAtkP,jdbcType=REAL},
+      </if>
+      <if test="redStarCAtkP != null" >
+        #{redStarCAtkP,jdbcType=REAL},
+      </if>
+      <if test="redStarDAtkP != null" >
+        #{redStarDAtkP,jdbcType=REAL},
+      </if>
+      <if test="redStarEAtkP != null" >
+        #{redStarEAtkP,jdbcType=REAL},
+      </if>
+      <if test="blueStarADefP != null" >
+        #{blueStarADefP,jdbcType=REAL},
+      </if>
+      <if test="blueStarBDefP != null" >
+        #{blueStarBDefP,jdbcType=REAL},
+      </if>
+      <if test="blueStarCDefP != null" >
+        #{blueStarCDefP,jdbcType=REAL},
+      </if>
+      <if test="blueStarDDefP != null" >
+        #{blueStarDDefP,jdbcType=REAL},
+      </if>
+      <if test="blueStarEDefP != null" >
+        #{blueStarEDefP,jdbcType=REAL},
+      </if>
+      <if test="redStarADefP != null" >
+        #{redStarADefP,jdbcType=REAL},
+      </if>
+      <if test="redStarBDefP != null" >
+        #{redStarBDefP,jdbcType=REAL},
+      </if>
+      <if test="redStarCDefP != null" >
+        #{redStarCDefP,jdbcType=REAL},
+      </if>
+      <if test="redStarDDefP != null" >
+        #{redStarDDefP,jdbcType=REAL},
+      </if>
+      <if test="redStarEDefP != null" >
+        #{redStarEDefP,jdbcType=REAL},
+      </if>
+      <if test="gameTimeM != null" >
+        #{gameTimeM,jdbcType=INTEGER},
+      </if>
+      <if test="gameTimeS != null" >
+        #{gameTimeS,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.pachong.entity.famulei_herosExample" resultType="java.lang.Integer" >
+    select count(*) from famulei_heros
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update famulei_heros
+    <set >
+      <if test="record.blueName != null" >
+        blue_name = #{record.blueName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redName != null" >
+        red_name = #{record.redName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueResult != null" >
+        blue_result = #{record.blueResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redResult != null" >
+        red_result = #{record.redResult,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueHeroAName != null" >
+        blue_hero_a_name = #{record.blueHeroAName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueHeroBName != null" >
+        blue_hero_b_name = #{record.blueHeroBName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueHeroCName != null" >
+        blue_hero_c_name = #{record.blueHeroCName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueHeroDName != null" >
+        blue_hero_d_name = #{record.blueHeroDName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueHeroEName != null" >
+        blue_hero_e_name = #{record.blueHeroEName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redHeroAName != null" >
+        red_hero_a_name = #{record.redHeroAName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redHeroBName != null" >
+        red_hero_b_name = #{record.redHeroBName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redHeroCName != null" >
+        red_hero_c_name = #{record.redHeroCName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redHeroDName != null" >
+        red_hero_d_name = #{record.redHeroDName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redHeroEName != null" >
+        red_hero_e_name = #{record.redHeroEName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueStarAName != null" >
+        blue_star_a_name = #{record.blueStarAName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueStarBName != null" >
+        blue_star_b_name = #{record.blueStarBName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueStarCName != null" >
+        blue_star_c_name = #{record.blueStarCName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueStarDName != null" >
+        blue_star_d_name = #{record.blueStarDName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueStarEName != null" >
+        blue_star_e_name = #{record.blueStarEName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redStarAName != null" >
+        red_star_a_name = #{record.redStarAName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redStarBName != null" >
+        red_star_b_name = #{record.redStarBName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redStarCName != null" >
+        red_star_c_name = #{record.redStarCName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redStarDName != null" >
+        red_star_d_name = #{record.redStarDName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redStarEName != null" >
+        red_star_e_name = #{record.redStarEName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.blueStarAAtkP != null" >
+        blue_star_a_atk_p = #{record.blueStarAAtkP,jdbcType=REAL},
+      </if>
+      <if test="record.blueStarBAtkP != null" >
+        blue_star_b_atk_p = #{record.blueStarBAtkP,jdbcType=REAL},
+      </if>
+      <if test="record.blueStarCAtkP != null" >
+        blue_star_c_atk_p = #{record.blueStarCAtkP,jdbcType=REAL},
+      </if>
+      <if test="record.blueStarDAtkP != null" >
+        blue_star_d_atk_p = #{record.blueStarDAtkP,jdbcType=REAL},
+      </if>
+      <if test="record.blueStarEAtkP != null" >
+        blue_star_e_atk_p = #{record.blueStarEAtkP,jdbcType=REAL},
+      </if>
+      <if test="record.redStarAAtkP != null" >
+        red_star_a_atk_p = #{record.redStarAAtkP,jdbcType=REAL},
+      </if>
+      <if test="record.redStarBAtkP != null" >
+        red_star_b_atk_p = #{record.redStarBAtkP,jdbcType=REAL},
+      </if>
+      <if test="record.redStarCAtkP != null" >
+        red_star_c_atk_p = #{record.redStarCAtkP,jdbcType=REAL},
+      </if>
+      <if test="record.redStarDAtkP != null" >
+        red_star_d_atk_p = #{record.redStarDAtkP,jdbcType=REAL},
+      </if>
+      <if test="record.redStarEAtkP != null" >
+        red_star_e_atk_p = #{record.redStarEAtkP,jdbcType=REAL},
+      </if>
+      <if test="record.blueStarADefP != null" >
+        blue_star_a_def_p = #{record.blueStarADefP,jdbcType=REAL},
+      </if>
+      <if test="record.blueStarBDefP != null" >
+        blue_star_b_def_p = #{record.blueStarBDefP,jdbcType=REAL},
+      </if>
+      <if test="record.blueStarCDefP != null" >
+        blue_star_c_def_p = #{record.blueStarCDefP,jdbcType=REAL},
+      </if>
+      <if test="record.blueStarDDefP != null" >
+        blue_star_d_def_p = #{record.blueStarDDefP,jdbcType=REAL},
+      </if>
+      <if test="record.blueStarEDefP != null" >
+        blue_star_e_def_p = #{record.blueStarEDefP,jdbcType=REAL},
+      </if>
+      <if test="record.redStarADefP != null" >
+        red_star_a_def_p = #{record.redStarADefP,jdbcType=REAL},
+      </if>
+      <if test="record.redStarBDefP != null" >
+        red_star_b_def_p = #{record.redStarBDefP,jdbcType=REAL},
+      </if>
+      <if test="record.redStarCDefP != null" >
+        red_star_c_def_p = #{record.redStarCDefP,jdbcType=REAL},
+      </if>
+      <if test="record.redStarDDefP != null" >
+        red_star_d_def_p = #{record.redStarDDefP,jdbcType=REAL},
+      </if>
+      <if test="record.redStarEDefP != null" >
+        red_star_e_def_p = #{record.redStarEDefP,jdbcType=REAL},
+      </if>
+      <if test="record.gameTimeM != null" >
+        game_time_m = #{record.gameTimeM,jdbcType=INTEGER},
+      </if>
+      <if test="record.gameTimeS != null" >
+        game_time_s = #{record.gameTimeS,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update famulei_heros
+    set blue_name = #{record.blueName,jdbcType=VARCHAR},
+      red_name = #{record.redName,jdbcType=VARCHAR},
+      blue_result = #{record.blueResult,jdbcType=VARCHAR},
+      red_result = #{record.redResult,jdbcType=VARCHAR},
+      blue_hero_a_name = #{record.blueHeroAName,jdbcType=VARCHAR},
+      blue_hero_b_name = #{record.blueHeroBName,jdbcType=VARCHAR},
+      blue_hero_c_name = #{record.blueHeroCName,jdbcType=VARCHAR},
+      blue_hero_d_name = #{record.blueHeroDName,jdbcType=VARCHAR},
+      blue_hero_e_name = #{record.blueHeroEName,jdbcType=VARCHAR},
+      red_hero_a_name = #{record.redHeroAName,jdbcType=VARCHAR},
+      red_hero_b_name = #{record.redHeroBName,jdbcType=VARCHAR},
+      red_hero_c_name = #{record.redHeroCName,jdbcType=VARCHAR},
+      red_hero_d_name = #{record.redHeroDName,jdbcType=VARCHAR},
+      red_hero_e_name = #{record.redHeroEName,jdbcType=VARCHAR},
+      blue_star_a_name = #{record.blueStarAName,jdbcType=VARCHAR},
+      blue_star_b_name = #{record.blueStarBName,jdbcType=VARCHAR},
+      blue_star_c_name = #{record.blueStarCName,jdbcType=VARCHAR},
+      blue_star_d_name = #{record.blueStarDName,jdbcType=VARCHAR},
+      blue_star_e_name = #{record.blueStarEName,jdbcType=VARCHAR},
+      red_star_a_name = #{record.redStarAName,jdbcType=VARCHAR},
+      red_star_b_name = #{record.redStarBName,jdbcType=VARCHAR},
+      red_star_c_name = #{record.redStarCName,jdbcType=VARCHAR},
+      red_star_d_name = #{record.redStarDName,jdbcType=VARCHAR},
+      red_star_e_name = #{record.redStarEName,jdbcType=VARCHAR},
+      blue_star_a_atk_p = #{record.blueStarAAtkP,jdbcType=REAL},
+      blue_star_b_atk_p = #{record.blueStarBAtkP,jdbcType=REAL},
+      blue_star_c_atk_p = #{record.blueStarCAtkP,jdbcType=REAL},
+      blue_star_d_atk_p = #{record.blueStarDAtkP,jdbcType=REAL},
+      blue_star_e_atk_p = #{record.blueStarEAtkP,jdbcType=REAL},
+      red_star_a_atk_p = #{record.redStarAAtkP,jdbcType=REAL},
+      red_star_b_atk_p = #{record.redStarBAtkP,jdbcType=REAL},
+      red_star_c_atk_p = #{record.redStarCAtkP,jdbcType=REAL},
+      red_star_d_atk_p = #{record.redStarDAtkP,jdbcType=REAL},
+      red_star_e_atk_p = #{record.redStarEAtkP,jdbcType=REAL},
+      blue_star_a_def_p = #{record.blueStarADefP,jdbcType=REAL},
+      blue_star_b_def_p = #{record.blueStarBDefP,jdbcType=REAL},
+      blue_star_c_def_p = #{record.blueStarCDefP,jdbcType=REAL},
+      blue_star_d_def_p = #{record.blueStarDDefP,jdbcType=REAL},
+      blue_star_e_def_p = #{record.blueStarEDefP,jdbcType=REAL},
+      red_star_a_def_p = #{record.redStarADefP,jdbcType=REAL},
+      red_star_b_def_p = #{record.redStarBDefP,jdbcType=REAL},
+      red_star_c_def_p = #{record.redStarCDefP,jdbcType=REAL},
+      red_star_d_def_p = #{record.redStarDDefP,jdbcType=REAL},
+      red_star_e_def_p = #{record.redStarEDefP,jdbcType=REAL},
+      game_time_m = #{record.gameTimeM,jdbcType=INTEGER},
+      game_time_s = #{record.gameTimeS,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>
